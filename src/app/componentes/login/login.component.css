@@ -17,19 +17,18 @@
     flex-direction: column;
     display: flex;
     justify-content: center;
+    border: red thin solid;
 }
 
-
 .login-card {
-    display: flex;
-    justify-content: center;
+  border: blue thin solid;
     background-color: #ffffff; /* Blanco */
     border-radius: 15px;
     padding: 40px;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(1000px) rotateX(5deg); /* Efecto 3D */
     transition: all 0.3s ease-in-out;
-    width: 100%;
+    width: auto;
     max-width: 400px; /* Máxima anchura */
     text-align: center; /* Asegura que el contenido de la tarjeta esté centrado */
 }
@@ -54,7 +53,11 @@
     font-size: 16px; /* Tamaño de fuente aumentado */
     color: #6c63ff; /* Violeta claro */
     font-weight: 600; /* Negrita */
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    padding: 1rem;
+  border: yellowgreen thin solid;
+  display: inline-block;
+
   }
   
   .form-control {
@@ -62,8 +65,9 @@
     border-radius: 10px;
     padding: 2%;
     font-size: 16px;
-    width: 100%;
-    transition: all 0.3s ease;
+    width: 90%;
+    transition: all 0.3s ease-in-out;
+
   }
   
   .form-control:focus {
