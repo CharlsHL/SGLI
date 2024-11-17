@@ -1,0 +1,101 @@
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px; /* Espacio entre el logo y la tarjeta de login */
+}
+
+.logo {
+    font-size: 80px; /* Tamaño grande */
+    color: #6c63ff; /* Color morado */
+    font-family: 'Poppins', sans-serif; /* Fuente bonita */
+    font-weight: bold; /* Negrita */
+    letter-spacing: 2px; /* Espaciado entre las letras */
+    text-transform: uppercase; /* Todo en mayúsculas */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.login1 {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+
+.login-card {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff; /* Blanco */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: perspective(1000px) rotateX(5deg); /* Efecto 3D */
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    max-width: 400px; /* Máxima anchura */
+    text-align: center; /* Asegura que el contenido de la tarjeta esté centrado */
+}
+  
+  .login-card:hover {
+    transform: perspective(1000px) rotateX(0); /* Efecto al pasar el ratón */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2), 0 6px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #6c63ff; /* Violeta claro */
+    margin-bottom: 20px;
+    font-size: 28px; /* Tamaño de fuente aumentado */
+    font-weight: 600; /* Negrita */
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-label {
+    font-size: 16px; /* Tamaño de fuente aumentado */
+    color: #6c63ff; /* Violeta claro */
+    font-weight: 600; /* Negrita */
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    border: 2px solid #d0b8ff; /* Bordes violeta claro */
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 16px;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #6c63ff; /* Violeta claro al estar enfocado */
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.6); /* Efecto de enfoque */
+  }
+  
+  button {
+    background-color: #6c63ff; /* Violeta claro */
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #584fd4; /* Violeta más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+  }
+  
+  button:active {
+    background-color: #4b3c98; /* Violeta aún más oscuro al hacer clic */
+  }
+  
+  /* Efecto de carga del formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
