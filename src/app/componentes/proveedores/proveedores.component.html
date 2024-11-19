@@ -1,1 +1,35 @@
-<p>proveedores works!</p>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- user-list.component.html -->
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <button class="btn btn-primary mb-3" (click)="agregarProveedores()">Agregar Proveedores</button>
+        
+        <!-- Grid de usuarios -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let proveedor of proveedores; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ proveedor.nombre }}</td>
+              <td>{{ proveedor.email }}</td>
+              <td>
+                <button class="btn btn-info btn-sm" (click)="verDetalles(proveedor)">Ver</button>
+                <button class="btn btn-warning btn-sm" (click)="editarProveedores(proveedor)">Editar</button>
+                <button class="btn btn-danger btn-sm" (click)="eliminarProveedores(proveedor)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
