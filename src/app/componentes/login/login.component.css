@@ -27,23 +27,23 @@
 }
 
 .login1 {
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  /*border: red thin solid;*/
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    border: red thin solid;
 }
 
 .login-card {
-border: blue thin solid;
-  background-color: #ffffff; /* Blanco */
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: perspective(1000px) rotateX(5deg); /* Efecto 3D */
-  transition: all 0.3s ease-in-out;
-  width: auto;
-  max-width: 400px; /* Máxima anchura */
-  text-align: center; /* Asegura que el contenido de la tarjeta esté centrado */
+  border: blue thin solid;
+    background-color: #ffffff; /* Blanco */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: perspective(1000px) rotateX(5deg); /* Efecto 3D */
+    transition: all 0.3s ease-in-out;
+    width: auto;
+    max-width: 400px; /* Máxima anchura */
+    text-align: center; /* Asegura que el contenido de la tarjeta esté centrado */
 }
 
 .login-card:hover {
@@ -62,56 +62,57 @@ h1 {
   text-align: center;
 }
 
-.form-label {
-  font-size: 16px; /* Tamaño de fuente aumentado */
-  color: #6c63ff; /* Violeta claro */
-  font-weight: 600; /* Negrita */
-  margin-bottom: 10px;
-  padding: 1rem;
-/*border: yellowgreen thin solid;*/
-display: inline-block;
+  .form-label {
+    font-size: 16px; /* Tamaño de fuente aumentado */
+    color: #6c63ff; /* Violeta claro */
+    font-weight: 600; /* Negrita */
+    margin-bottom: 10px;
+    padding: 1rem;
+  border: yellowgreen thin solid;
+  display: inline-block;
 
-}
+  }
+  
+  .form-control {
+    border: 2px solid #d0b8ff; /* Bordes violeta claro */
+    border-radius: 10px;
+    padding: 2%;
+    font-size: 16px;
+    width: 90%;
+    transition: all 0.3s ease-in-out;
 
-.form-control {
-  border: 2px solid #d0b8ff; /* Bordes violeta claro */
-  border-radius: 10px;
-  padding: 2%;
-  font-size: 16px;
-  width: 90%;
-  transition: all 0.3s ease-in-out;
-
-}
-
-.form-control:focus {
-  border-color: #6c63ff; /* Violeta claro al estar enfocado */
-  box-shadow: 0 0 5px rgba(108, 99, 255, 0.6); /* Efecto de enfoque */
-}
-
-button {
-  background-color: #6c63ff; /* Violeta claro */
-  color: #fff;
-  border: none;
-  padding: 14px;
-  width: 100%;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: #584fd4; /* Violeta más oscuro al pasar el ratón */
-  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
-}
-
-button:active {
-  background-color: #4b3c98; /* Violeta aún más oscuro al hacer clic */
-}
-
-/* Efecto de carga del formulario */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+  }
+  
+  .form-control:focus {
+    border-color: #6c63ff; /* Violeta claro al estar enfocado */
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.6); /* Efecto de enfoque */
+  }
+  
+  button {
+    background-color: #6c63ff; /* Violeta claro */
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #584fd4; /* Violeta más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+  }
+  
+  button:active {
+    background-color: #4b3c98; /* Violeta aún más oscuro al hacer clic */
+  }
+  
+  /* Efecto de carga del formulario */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  

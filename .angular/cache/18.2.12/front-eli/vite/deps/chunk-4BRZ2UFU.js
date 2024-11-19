@@ -1,7 +1,6 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   withHttpTransferCache
-} from "./chunk-RVCZVQ7B.js";
+} from "./chunk-NAOFJM4E.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -12,7 +11,7 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
-} from "./chunk-LWLAASAY.js";
+} from "./chunk-E4TWDPBN.js";
 import {
   APP_ID,
   ApplicationModule,
@@ -43,6 +42,8 @@ import {
   ViewEncapsulation$1,
   XSS_SECURITY_URL,
   ZONELESS_ENABLED,
+  __spreadProps,
+  __spreadValues,
   _global,
   _sanitizeHtml,
   _sanitizeUrl,
@@ -69,13 +70,9 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-QSDDJS4D.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-NQ4HTGF6.js";
+} from "./chunk-ZVV3ABW7.js";
 
-// ../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 var GenericBrowserDomAdapter = class extends DomAdapter {
   constructor() {
     super(...arguments);
@@ -1937,4 +1934,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-Z475G2I4.js.map
+//# sourceMappingURL=chunk-4BRZ2UFU.js.map
