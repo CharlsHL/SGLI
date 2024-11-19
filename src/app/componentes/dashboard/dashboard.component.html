@@ -1,0 +1,41 @@
+<!-- Barra superior -->
+<div class="top-bar">
+    <!-- Sección del logo a la izquierda -->
+    <div>
+        <img src="logo.png" alt="INF">
+    </div>
+</div>
+
+<!-- Barra lateral -->
+<div class="sidebar">
+    <a class="nav-link" routerLink="/dashboard/inicio">Panel de control</a>
+    <a class="nav-link" routerLink="/dashboard/usuarios">Usuarios</a>
+    <a class="nav-link" routerLink="/dashboard/clientes">Clientes</a>
+    <a class="nav-link" routerLink="/dashboard/proveedores">Proveedores</a>
+    <a class="nav-link" routerLink="/dashboard/compras">Compras</a>
+    <a class="nav-link" routerLink="/dashboard/ventas">Ventas</a>
+    <div class="sidebar-footer">
+        <img src="https://via.placeholder.com/40" alt="User">
+        <div>Santiago D</div>
+    </div>
+</div>
+
+<!-- Contenedor principal con el contenido -->
+<div class="wrapper">
+    <div class="content">
+        <!-- Contenido principal se renderiza aquí -->
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container-fluid text-center py-3">
+        <div>
+            &copy; 2024 - Ríos Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+</footer>

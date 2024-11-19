@@ -1,0 +1,122 @@
+﻿/* General */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Fondo claro */
+    color: #333;
+}
+
+/* Barra superior */
+.top-bar {
+    background-color: #6f42c1; /* Morado claro */
+    color: white;
+    height: 82px;
+    width: 100%;
+    position: fixed; /* Fija en la parte superior */
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.top-bar a:hover {
+    color: #ddd; /* Blanco suave */
+}
+
+/* Barra lateral */
+.sidebar {
+    position: fixed;
+    top: 82px; /* Debajo de la barra superior */
+    left: 0;
+    width: 220px;
+    height: calc(100% - 82px); /* Altura total menos la barra superior */
+    background-color: #4a4a4a; /* Gris oscuro */
+    color: white;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background-color: #6f42c1; /* Morado claro */
+    border-radius: 5px;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-footer img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Contenedor principal */
+.wrapper {
+    margin-left: 220px; /* Deja espacio para la barra lateral */
+    margin-top: 82px; /* Deja espacio para la barra superior */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    /* flex: 1; Empuja el footer al final si no hay suficiente contenido */
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background-color: #6f42c1; /* Morado claro */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #ddd; /* Blanco suave */
+}
