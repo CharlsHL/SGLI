@@ -29,12 +29,11 @@
 .login1 {
     flex-direction: column;
     display: flex;
-    justify-content: center;
-    border: red thin solid;
+    justify-content: center;  
 }
 
 .login-card {
-  border: blue thin solid;
+
     background-color: #ffffff; /* Blanco */
     border-radius: 15px;
     padding: 40px;
@@ -68,7 +67,6 @@ h1 {
     font-weight: 600; /* Negrita */
     margin-bottom: 10px;
     padding: 1rem;
-  border: yellowgreen thin solid;
   display: inline-block;
 
   }

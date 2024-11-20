@@ -1,2 +1,46 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<p>inicio works!</p>
+<div class="container my-4">
+  <h1 class="text-center mb-4">Dashboard de Ventas y Servicios</h1>
+  
+  <!-- Gráfico -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          Ventas por Fecha
+        </div>
+        <div class="card-body">
+          <canvas id="ventasChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header bg-success text-white">
+          Productos Más Vendidos
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li *ngFor="let producto of productosMasVendidos" class="list-group-item">
+              {{ producto.nombre }} - Vendidos: {{ producto.cantidad }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          Últimos Servicios Técnicos
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li *ngFor="let servicio of estadoServicios" class="list-group-item">
+              {{ servicio.servicio }} - Estado: {{ servicio.estado }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

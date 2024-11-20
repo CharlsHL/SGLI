@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+      {{ modo === 'editar' ? 'Editar Usuario' : 'Agregar Usuario' }}
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="empleado.nombre" name="nombre" placeholder="Nombre del empleado" required>
+      </div>
+      <div class="mb-3">
+        <label for="puesto" class="form-label">Puesto</label>
+        <input type="text" class="form-control" id="puesto" [(ngModel)]="empleado.puesto" name="puesto" placeholder="Puesto del empleado" required>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+    <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar</button>
+  </div>
