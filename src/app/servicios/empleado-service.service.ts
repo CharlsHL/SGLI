@@ -40,7 +40,7 @@ export class EmpleadoServiceService {
 
   edit(empleado: Empleado):Observable<Respuesta>{
     const headers = validacionToken.getToken();
-    return this.http.put<Respuesta>(this.apiUrl+"/Editar",empleado,{ headers });
+    return this.http.put<Respuesta>(this.apiUrl+"/EditarEmpleado",empleado,{ headers });
   }
 
   reactivar (proveedor: Empleado):Observable<Respuesta>{

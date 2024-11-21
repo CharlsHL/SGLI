@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Empleado } from '../../../modelos/empleado';
 import { EmpleadoServiceService } from '../../../servicios/empleado-service.service';
 import { CentroService } from '../../../servicios/centro.service';
+import { UsuariosService } from '../../../servicios/usuarios.service';
 @Component({
   selector: 'app-pop-up-crear-editar-empleado',
   standalone: true,
@@ -21,14 +22,28 @@ export class PopUpCrearEditarEmpleadoComponent {
   usuarioData!: any; // Usar operador de aserción
   guidCentro!: string; // Usar operador de aserción
   public centro!: any;
+  public usuarioCuenta: any;
   constructor(public activeModal: NgbActiveModal,
               public apiRol :  RolService,
               public apiEmpleado : EmpleadoServiceService,
-              public apiCentro : CentroService
+              public apiCentro : CentroService,
+              public apiUsuario : UsuariosService
   ) {}
 
   ngOnInit(): void {
     this.getRoles();  
+    if(this.modo === 'editar'){
+      this.apiUsuario.getUsuario(this.empleado.guid).subscribe({
+        next: (respuesta) => {
+          this.usuarioCuenta = respuesta.datos.usuario;
+          this.empleado.contrasena = this.usuarioCuenta.contraseña;
+          this.empleado.usuario = this.usuarioCuenta.usuario;
+        },
+        error: (err) => {
+          console.error('Error al cargar los roles:', err);
+        }
+      });
+    }
  }
 
   // Método para cerrar el modal utilizando NgbActiveModal
@@ -38,7 +53,12 @@ export class PopUpCrearEditarEmpleadoComponent {
 
   // Método para guardar los cambios (simulado)
   guardarCambios() {
-    console.log('Empleado guardado:', this.empleado);
+    if(this.modo=== 'editar'){
+      this.editEmpleado();
+    }else{
+      this.addEmpleado();
+    }
+
     this.cerrarModal();  // Cerrar el modal después de guardar
 
   }
@@ -55,10 +75,16 @@ export class PopUpCrearEditarEmpleadoComponent {
   }
   
   addEmpleado() {
- 
+    const storedData = localStorage.getItem('usuario');
+
+    // Verificar si hay datos en el localStorage
+    if (storedData) {
+      // Deserializar los datos
+      this.usuarioData = JSON.parse(storedData);
+    }
     // Aquí estamos creando el objeto empleado con los valores que llegan del formulario
     const empleado: Empleado = {
-      guid: "",  // Puedes generar o asignar un GUID único
+      guid:  this.usuarioData.guidCentro,  // Puedes generar o asignar un GUID único
       nombre: this.empleado.nombre,  // Se asigna el valor de "nombre" del formulario
       apellido: this.empleado.apellido,  // Se asigna el valor de "apellido" del formulario
       tipoDocumento: this.empleado.tipoDocumento,  // Se asigna el valor de "tipoDocumento" del formulario
@@ -68,12 +94,11 @@ export class PopUpCrearEditarEmpleadoComponent {
       direccion: this.empleado.direccion,  // Asignamos la "direccion" del formulario
       estado: this.empleado.estado,  // Asignamos el "estado" del formulario
       guidRol: this.empleado.guidRol,  // Asignamos el rol seleccionado
-      guidCentro: this.empleado.guidCentro,  // Asignamos el centro del formulario
+      guidCentro: this.usuarioData.guidCentro,  // Asignamos el centro del formulario
       usuario: this.empleado.usuario,  // Asignamos el "usuario" del formulario
       contraseña: this.empleado.contrasena  // Asignamos la "contraseña" del formulario
     };
-  
-    // Llamamos al servicio API para agregar el empleado
+     // Llamamos al servicio API para agregar el empleado
     this.apiEmpleado.add(empleado).subscribe(respuesta => {
       // Si la respuesta tiene éxito, cerramos el modal y mostramos un mensaje
       if (respuesta.exito === 1) {
@@ -85,26 +110,38 @@ export class PopUpCrearEditarEmpleadoComponent {
   }
 
   editEmpleado(){
-      // Aquí estamos creando el objeto empleado con los valores que llegan del formulario
-      const empleado: Empleado = {
-        guid: this.empleado.guid,  // Puedes generar o asignar un GUID único
-        nombre: this.empleado.nombre,  // Se asigna el valor de "nombre" del formulario
-        apellido: this.empleado.apellido,  // Se asigna el valor de "apellido" del formulario
-        tipoDocumento: this.empleado.tipoDocumento,  // Se asigna el valor de "tipoDocumento" del formulario
-        documento: this.empleado.numeroDocumento,  // Asignamos "numeroDocumento" al campo "documento"
-        telefono: this.empleado.telefono,  // Asignamos el "telefono" del formulario
-        email: this.empleado.email,  // Asignamos el "email" del formulario
-        direccion: this.empleado.direccion,  // Asignamos la "direccion" del formulario
-        estado: this.empleado.estado,  // Asignamos el "estado" del formulario
-        guidRol: this.empleado.guidRol,  // Asignamos el rol seleccionado
-        guidCentro: this.empleado.guidCentro,  // Asignamos el centro del formulario
-        usuario: this.empleado.usuario,  // Asignamos el "usuario" del formulario
-        contraseña: this.empleado.contrasena  // Asignamos la "contraseña" del formulario
-      };
-    this.apiEmpleado.edit(empleado).subscribe(Respuesta => {
-      if(Respuesta.exito===1){
-        this.cerrarModal();
+    const storedData = localStorage.getItem('usuario');
+
+    // Verificar si hay datos en el localStorage
+    if (storedData) {
+      // Deserializar los datos
+      this.usuarioData = JSON.parse(storedData);
+    }
+    // Aquí estamos creando el objeto empleado con los valores que llegan del formulario
+    const empleado: Empleado = {
+      guid:  this.empleado.guid,  // Puedes generar o asignar un GUID único
+      nombre: this.empleado.nombre,  // Se asigna el valor de "nombre" del formulario
+      apellido: this.empleado.apellido,  // Se asigna el valor de "apellido" del formulario
+      tipoDocumento: this.empleado.tipoDocumento,  // Se asigna el valor de "tipoDocumento" del formulario
+      documento: this.empleado.numeroDocumento,  // Asignamos "numeroDocumento" al campo "documento"
+      telefono: this.empleado.telefono,  // Asignamos el "telefono" del formulario
+      email: this.empleado.email,  // Asignamos el "email" del formulario
+      direccion: this.empleado.direccion,  // Asignamos la "direccion" del formulario
+      estado: this.empleado.estado,  // Asignamos el "estado" del formulario
+      guidRol: this.empleado.guidRol,  // Asignamos el rol seleccionado
+      guidCentro: this.usuarioData.guidCentro,  // Asignamos el centro del formulario
+      usuario: this.empleado.usuario,  // Asignamos el "usuario" del formulario
+      contraseña: this.empleado.contrasena  // Asignamos la "contraseña" del formulario
+    };
+     // Llamamos al servicio API para agregar el empleado
+    this.apiEmpleado.edit(empleado).subscribe(respuesta => {
+      // Si la respuesta tiene éxito, cerramos el modal y mostramos un mensaje
+      console.log(respuesta.exito);
+      if (respuesta.exito === 1) {
+        this.cerrarModal(); // Cierra el modal
+      } else {
+        this.cerrarModal();;  // Cierra el modal
       }
-    })
+    });
   }
 }

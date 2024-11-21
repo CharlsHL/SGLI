@@ -61,11 +61,6 @@
           <option *ngFor="let rol of list" [value]="rol.guid">{{ rol.nombre }}</option>
         </select>
       </div>
-  
-      <div class="col-md-6 mb-3">
-        <label for="guidCentro" class="form-label">Centro</label>
-        <input type="text" class="form-control" id="guidCentro" [(ngModel)]="empleado.guidCentro" name="guidCentro" placeholder="Centro">
-      </div>
 
       <!-- Usuario -->
       <div class="col-md-6 mb-3">
