@@ -11,7 +11,7 @@ html, body {
 .top-bar {
     background-color: #6f42c1; /* Morado claro */
     color: white;
-    height: 82px;
+    height: 67px;
     width: 100%;
     position: fixed; /* Fija en la parte superior */
     top: 0;
@@ -43,16 +43,19 @@ html, body {
 /* Barra lateral */
 .sidebar {
     position: fixed;
-    top: 82px; /* Debajo de la barra superior */
-    left: 0;
-    width: 220px;
-    height: calc(100% - 82px); /* Altura total menos la barra superior */
-    background-color: #4a4a4a; /* Gris oscuro */
+    top: 0; /* Asegura que se pegue al borde superior */
+    left: 0; /* Asegura que esté pegado al borde izquierdo */
+    width: 220px; /* Ancho fijo para la barra lateral */
+    height: 100%; /* Ocupa toda la altura de la pantalla */
+    background-color: #4a4a4a; /* Fondo gris oscuro */
     color: white;
-    padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    margin: 0; /* Elimina cualquier margen que pudiera causar el espacio */
+    padding: 0; /* Elimina padding adicional */
+    z-index: 1000; /* Se asegura de que esté encima del contenido principal */
 }
-
 .sidebar a {
     display: block;
     color: white;
