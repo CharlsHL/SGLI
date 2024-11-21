@@ -16,7 +16,7 @@ export class EmpleadoServiceService {
   constructor(private http: HttpClient) { 
   }
   
-  getEmpleados(): Observable<Respuesta> {
+  getEmpleados(guid: string): Observable<Respuesta> {
     const token = localStorage.getItem('TOKEN');
     if (!token) {
       throw new Error('Token not found');
@@ -25,9 +25,9 @@ export class EmpleadoServiceService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${cleanedToken}`
     });
-    return this.http.get<Respuesta>(`${this.apiUrl}/ObtenerTodosLosEmpleados`, { headers });
+    return this.http.get<Respuesta>(`${this.apiUrl}/ObtenerTodosLosEmpleados?guidCentro=${encodeURIComponent(guid)}`, { headers });
   }
-  
+
   getRol(rol: rol):Observable<Respuesta>{
     return this.http.post<Respuesta>(this.apiUrl+'/rolEmpleado',rol);
   }

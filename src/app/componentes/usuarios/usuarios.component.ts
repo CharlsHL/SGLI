@@ -15,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class UsuariosComponent {
   readonly width: string = '525px';
   readonly higt: string = '600px'
+  usuarioData!: any; 
   constructor(    
     private apiEmpleado: EmpleadoServiceService,
     private modalService: NgbModal
@@ -72,7 +73,16 @@ editarUsuario(usuario: any) {
 }
 
   obtenerUsuarios(){
-    this.apiEmpleado.getEmpleados().subscribe(Respuesta => {
+    debugger
+    // Obtener los datos del localStorage
+    const storedData = localStorage.getItem('usuario');
+
+    // Verificar si hay datos en el localStorage
+    if (storedData) {
+      // Deserializar los datos
+      this.usuarioData = JSON.parse(storedData);
+    }
+    this.apiEmpleado.getEmpleados(this.usuarioData.guidCentro).subscribe(Respuesta => {
       if(Respuesta.exito != 0)
        this.usuarios = Respuesta.datos.$values;
    })  

@@ -23,7 +23,6 @@ export class CentroService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${cleanedToken}`
     });  
-    const url2 = `${this.apiUrl}/ObtenerCentro?guid=${encodeURIComponent(guid)}`;
     return this.http.get<Respuesta>(`${this.apiUrl}/ObtenerCentro?guid= ${encodeURIComponent(guid)}`, { headers });
   }
 }

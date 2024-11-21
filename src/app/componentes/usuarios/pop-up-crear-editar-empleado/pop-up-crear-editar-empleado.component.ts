@@ -20,7 +20,7 @@ export class PopUpCrearEditarEmpleadoComponent {
   public list : any;
   usuarioData!: any; // Usar operador de aserción
   guidCentro!: string; // Usar operador de aserción
-  centro!: any;
+  public centro!: any;
   constructor(public activeModal: NgbActiveModal,
               public apiRol :  RolService,
               public apiEmpleado : EmpleadoServiceService,
@@ -29,9 +29,6 @@ export class PopUpCrearEditarEmpleadoComponent {
 
   ngOnInit(): void {
     this.getRoles();  
-    this.obtenerCentro();
-    this.empleado.centro = this.centro.nombre;
-    console.log(this.empleado.guid);
  }
 
   // Método para cerrar el modal utilizando NgbActiveModal
@@ -58,9 +55,7 @@ export class PopUpCrearEditarEmpleadoComponent {
   }
   
   addEmpleado() {
-    // Llamamos a obtenerCentro() si es necesario
-    this.obtenerCentro();
-  
+ 
     // Aquí estamos creando el objeto empleado con los valores que llegan del formulario
     const empleado: Empleado = {
       guid: "",  // Puedes generar o asignar un GUID único
@@ -90,9 +85,6 @@ export class PopUpCrearEditarEmpleadoComponent {
   }
 
   editEmpleado(){
-      // Llamamos a obtenerCentro() si es necesario
-      this.obtenerCentro();
-
       // Aquí estamos creando el objeto empleado con los valores que llegan del formulario
       const empleado: Empleado = {
         guid: this.empleado.guid,  // Puedes generar o asignar un GUID único
@@ -115,18 +107,4 @@ export class PopUpCrearEditarEmpleadoComponent {
       }
     })
   }
-
-  obtenerCentro(){
-    debugger;
-    // Obtener los datos del localStorage
-    const storedData = localStorage.getItem('usuario');
-
-    // Verificar si hay datos en el localStorage
-    if (storedData) {
-      // Deserializar los datos
-      this.usuarioData = JSON.parse(storedData);
-      this.centro  = this.apiCentro.getCentro(this.usuarioData.guidCentro);
-    }   
-  }
-
 }
