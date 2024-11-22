@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../servicios/auth.service';
+import { Console } from 'node:console';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,18 +10,41 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
-constructor(private router: Router){
+export class DashboardComponent implements OnInit {
+  perfil!: any | null;
 
-}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  cerrarSesion() {
-    // Lógica para limpiar la sesión del usuario
-    localStorage.removeItem('usuario'); // Elimina datos del usuario
-    sessionStorage.clear(); // Limpia cualquier dato en la sesión
+  ngOnInit(): void {
+    // Obtiene el perfil del usuario
+    this.perfil = this.authService.getPerfil();
+    console.log(this.perfil);
+  }
 
-    // Redirige al usuario a la página de inicio de sesión
+  cerrarSesion(): void {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 
+  tienePermiso(opcion: string): boolean {
+    const permisos: { [key: string]: string[] } = {
+      ADMIN: ['usuarios', 'clientes', 'proveedores', 'compras', 'ventas'],
+      EMPLEADO: ['clientes', 'compras', 'ventas'],
+      CLIENTE: ['ventas'],
+    };
+    if (!this.perfil || !this.perfil.nombre) {
+      console.error('El perfil no está definido o no tiene nombre');
+      return false;
+    }
+  
+    const nombrePerfil = this.perfil.nombre.toUpperCase(); // Normaliza el nombre
+    const permisosUsuario = permisos[nombrePerfil];
+  
+    if (!permisosUsuario) {
+      console.warn(`No hay permisos definidos para el perfil: ${nombrePerfil}`);
+      return false;
+    }
+  
+    return permisosUsuario.includes(opcion);
+  }
 }

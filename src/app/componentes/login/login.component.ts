@@ -44,11 +44,11 @@ export class LoginComponent {
   
     this._loginServicio.getIniciarSesion(login).subscribe({
       next: (response) => {
-        debugger;
         // Si la autenticación es exitosa
         if (response.exito != 0 && response.datos != null) {
           localStorage.setItem('TOKEN', JSON.stringify(response.token));
           localStorage.setItem('usuario', JSON.stringify(response.datos.usuario));
+          localStorage.setItem('PERFIL', JSON.stringify(response.datos.usuario.guidEmpleadoNavigation.guidRolNavigation));
           this.isLoading = false;  // Detiene el spinner
           this.router.navigate(['dashboard/inicio']);
         } else {
