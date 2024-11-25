@@ -14,6 +14,7 @@
     <a class="nav-link" routerLink="/dashboard/inicio">Panel de control</a>
     <a [hidden]="!tienePermiso('usuarios')" class="nav-link" routerLink="/dashboard/usuarios">Usuarios</a>
     <a [hidden]="!tienePermiso('clientes')" class="nav-link" routerLink="/dashboard/clientes">Clientes</a>
+    <a [hidden]="!tienePermiso('productos')" class="nav-link" routerLink="/dashboard/productos">Productos</a>
     <a [hidden]="!tienePermiso('proveedores')" class="nav-link" routerLink="/dashboard/proveedores">Proveedores</a>
     <a [hidden]="!tienePermiso('compras')" class="nav-link" routerLink="/dashboard/compras">Compras</a>
     <a [hidden]="!tienePermiso('ventas')" class="nav-link" routerLink="/dashboard/ventas">Ventas</a>

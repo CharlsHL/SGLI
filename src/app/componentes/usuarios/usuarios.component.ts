@@ -41,20 +41,27 @@ export class UsuariosComponent {
     backdrop: false,      // Permite que el fondo sea interactivo
     keyboard: true       // Permite que el modal se cierre con la tecla ESC
   });
-  
+
   modalRef.componentInstance.empleado = { nombre: '', puesto: '' };  // Datos vacíos para agregar
   modalRef.componentInstance.modo = 'agregar';  // Modo para agregar
 
-  modalRef.result.then(
-    (result) => {
-      
-      console.log('Modal cerrado con resultado:', result);
-      this.obtenerUsuarios();
-    },
-    (error) => {
-      console.log('Error al cerrar modal:', error);
-    }
-  );
+  // Escuchar el resultado del modal
+  modalRef.result
+    .then(
+      (result) => {
+        if (result === 'success') {  // Opcionalmente, puedes manejar un valor específico
+          console.log('Modal cerrado con éxito:', result);
+          this.obtenerUsuarios(); // Actualizar la lista
+          window.location.reload();
+        }
+      },
+      (reason) => {
+        console.log('Modal cerrado sin acción:', reason);
+      }
+    )
+    .catch((error) => {
+      console.error('Error al cerrar el modal:', error);
+    });
 }
 
 editarUsuario(usuario: any) {
@@ -78,13 +85,17 @@ editarUsuario(usuario: any) {
 
   modalRef.result.then(
     (result) => {
-      this.obtenerUsuarios();
-      console.log('Modal cerrado con resultado:', result);
+      if (result === 'success') {  // Opcionalmente, puedes manejar un valor específico
+        window.location.reload();
+        this.obtenerUsuarios(); // Actualizar la lista
+        window.location.reload();
+      }
     },
-    (error) => {
-      console.log('Error al cerrar modal:', error);
-    }
-  );
+    (reason) => {    }
+  )
+  .catch((error) => {
+    console.error('Error al cerrar el modal:', error);
+  });
 }
 
 eliminarUsuario(usuario: any) {
@@ -130,10 +141,5 @@ eliminarUsuario(usuario: any) {
       if(Respuesta.exito != 0)
        this.usuarios = Respuesta.datos.$values;
    })  
-  }
-
-  verDetalles(usuario: any) {
-    // Lógica para ver los detalles de un usuario
-    console.log('Ver detalles del usuario', usuario);
   }
 }

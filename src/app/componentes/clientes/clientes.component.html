@@ -17,11 +17,10 @@
           <tbody>
             <tr *ngFor="let cliente of clientes; let i = index">
               <td>{{ i + 1 }}</td>
-              <td>{{ cliente.nombre }}</td>
+              <td>{{ cliente.razonSocial }}</td>
               <td>{{ cliente.email }}</td>
               <td>
-                <button class="btn btn-info btn-sm" (click)="verDetalles(cliente)">Ver</button>
-                <button class="btn btn-warning btn-sm" (click)="editarCliente(cliente)">Editar</button>
+                <button class="btn btn-warning btn-sm" (click)="editarCliente(cliente)">Editar</button> | 
                 <button class="btn btn-danger btn-sm" (click)="eliminarCliente(cliente)">Eliminar</button>
               </td>
             </tr>

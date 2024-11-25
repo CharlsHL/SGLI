@@ -48,7 +48,7 @@ export class PopUpCrearEditarEmpleadoComponent {
 
   // Método para cerrar el modal utilizando NgbActiveModal
   cerrarModal() {
-    this.activeModal.close();  // Cerramos el modal
+    this.activeModal.close('success');
   }
 
   // Método para guardar los cambios (simulado)
@@ -136,7 +136,6 @@ export class PopUpCrearEditarEmpleadoComponent {
      // Llamamos al servicio API para agregar el empleado
     this.apiEmpleado.edit(empleado).subscribe(respuesta => {
       // Si la respuesta tiene éxito, cerramos el modal y mostramos un mensaje
-      console.log(respuesta.exito);
       if (respuesta.exito === 1) {
         this.cerrarModal(); // Cierra el modal
       } else {

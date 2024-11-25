@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Obtiene el perfil del usuario
     this.perfil = this.authService.getPerfil();
-    console.log(this.perfil);
   }
 
   cerrarSesion(): void {
@@ -28,8 +27,8 @@ export class DashboardComponent implements OnInit {
 
   tienePermiso(opcion: string): boolean {
     const permisos: { [key: string]: string[] } = {
-      ADMIN: ['usuarios', 'clientes', 'proveedores', 'compras', 'ventas'],
-      EMPLEADO: ['clientes', 'compras', 'ventas'],
+      ADMIN: ['usuarios', 'clientes', 'proveedores', 'compras', 'ventas','productos'],
+      EMPLEADO: ['clientes', 'compras', 'ventas','productos'],
       CLIENTE: ['ventas'],
     };
     if (!this.perfil || !this.perfil.nombre) {
