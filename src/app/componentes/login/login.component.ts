@@ -39,7 +39,8 @@ export class LoginComponent {
     const clave = this.formLogin.password;
     const login: login = {
       usuario: usuario,
-      contraseña: clave
+      contraseña: clave,
+      GuidCentro: 'BCE438BD-E1BF-4D4C-8B47-876B74A83B34'
     };
   
     this._loginServicio.getIniciarSesion(login).subscribe({

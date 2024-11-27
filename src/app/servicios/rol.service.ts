@@ -13,7 +13,7 @@ export class RolService {
   constructor(private http: HttpClient) { 
   }
   
-  getRoles(): Observable<Respuesta> {
+  getRoles(guid: string): Observable<Respuesta> {
     const token = localStorage.getItem('TOKEN');
     if (!token) {
       throw new Error('Token not found');
@@ -23,7 +23,6 @@ export class RolService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${cleanedToken}`
     });  
-    
-    return this.http.get<Respuesta>(`${this.apiUrl}/ObtenerTodosLosRoles`, { headers });
+    return this.http.get<Respuesta>(`${this.apiUrl}/ObtenerTodosLosRoles?guidCentro=${encodeURIComponent(guid)}`, { headers });
   }
 }

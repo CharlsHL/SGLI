@@ -5,10 +5,11 @@ import { PopupEliminarComponent } from '../genericos/popup-eliminar/popup-elimin
 import { PopUpCrearEditarEmpleadoComponent } from './pop-up-crear-editar-empleado/pop-up-crear-editar-empleado.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule,FormsModule ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css'
 })
@@ -18,6 +19,12 @@ export class UsuariosComponent {
   readonly higt: string = '600px'
   usuarioData!: any; 
   usuarioCuenta!: any;
+  paginaActual: number = 1;
+  usuariosPorPagina: number = 5;
+  usuariosPaginados: any[] = [];
+  totalPaginas: number = 0;  // Nueva propiedad para almacenar el total de páginas
+  apellidoFiltro: string = ''; // Campo para el filtro de apellido
+
   constructor(    
     private apiEmpleado: EmpleadoServiceService,
     private modalService: NgbModal,
@@ -57,6 +64,7 @@ export class UsuariosComponent {
       },
       (reason) => {
         console.log('Modal cerrado sin acción:', reason);
+        window.location.reload();
       }
     )
     .catch((error) => {
@@ -86,7 +94,7 @@ editarUsuario(usuario: any) {
   modalRef.result.then(
     (result) => {
       if (result === 'success') {  // Opcionalmente, puedes manejar un valor específico
-        window.location.reload();
+
         this.obtenerUsuarios(); // Actualizar la lista
         window.location.reload();
       }
@@ -99,6 +107,7 @@ editarUsuario(usuario: any) {
 }
 
 eliminarUsuario(usuario: any) {
+  debugger;
   const modalRef = this.modalService.open(PopupEliminarComponent, {
     size: 'md',
     backdrop: false,      // Permite que el fondo sea interactivo
@@ -128,18 +137,53 @@ eliminarUsuario(usuario: any) {
     }
   );
 }
-  obtenerUsuarios(){
-    // Obtener los datos del localStorage
-    const storedData = localStorage.getItem('usuario');
 
-    // Verificar si hay datos en el localStorage
+  obtenerUsuarios() {
+    const storedData = localStorage.getItem('usuario');
     if (storedData) {
-      // Deserializar los datos
       this.usuarioData = JSON.parse(storedData);
     }
+
     this.apiEmpleado.getEmpleados(this.usuarioData.guidCentro).subscribe(Respuesta => {
-      if(Respuesta.exito != 0)
-       this.usuarios = Respuesta.datos.$values;
-   })  
+      if (Respuesta.exito != 0) {
+        this.usuarios = Respuesta.datos.$values;
+        this.totalPaginas = Math.ceil(this.usuarios.length / this.usuariosPorPagina); // Calcula el total de páginas
+        this.actualizarPaginacion();
+      }
+    });
   }
+
+  actualizarPaginacion(): void {
+    const inicio = (this.paginaActual - 1) * this.usuariosPorPagina;
+    const fin = inicio + this.usuariosPorPagina;
+    this.usuariosPaginados = this.usuarios.slice(inicio, fin);
+  }
+
+  paginacionAnterior(): void {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
+  paginacionSiguiente(): void {
+    if (this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+      this.actualizarPaginacion();
+    }
+  }
+    // Función para filtrar los usuarios por apellido
+    filtrarUsuarios(): void {
+      if (this.apellidoFiltro) {
+        // Filtra usuarios que contengan el apellido en el nombre (puedes ajustarlo según cómo quieras que funcione el filtro)
+        this.usuarios = this.usuarios.filter(usuario => 
+          usuario.nombre.toLowerCase().includes(this.apellidoFiltro.toLowerCase())
+        );
+      } else {
+        // Si no hay filtro, obtenemos todos los usuarios nuevamente
+        this.obtenerUsuarios();
+      }
+      this.totalPaginas = Math.ceil(this.usuarios.length / this.usuariosPorPagina);
+      this.actualizarPaginacion();
+    }
 }
