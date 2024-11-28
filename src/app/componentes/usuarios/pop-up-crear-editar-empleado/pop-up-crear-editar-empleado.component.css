@@ -7,3 +7,19 @@
 body.modal-open {
   overflow: hidden;  /* Evita que se desactive el fondo */
 }
+.bt-acciones{
+  margin-right: 1rem ;
+  height:45px !important;
+  width: 200px;
+  background-color: #754bc4;
+  border:none;
+}
+
+.bt-acciones:hover{
+  background-color: #5820be;
+}
+
+.bt-cerrar{
+  width: 15px;
+  height: 15px;
+}

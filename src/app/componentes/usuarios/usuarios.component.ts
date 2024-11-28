@@ -42,7 +42,7 @@ export class UsuariosComponent {
     this.obtenerUsuarios();  
  }
 
- agregarUsuario() {
+agregarUsuario() {
   const modalRef = this.modalService.open(PopUpCrearEditarEmpleadoComponent, {
     size: 'lg',          // Ajusta el tamaño del modal si es necesario
     backdrop: false,      // Permite que el fondo sea interactivo
@@ -138,7 +138,7 @@ eliminarUsuario(usuario: any) {
   );
 }
 
-  obtenerUsuarios() {
+obtenerUsuarios() {
     const storedData = localStorage.getItem('usuario');
     if (storedData) {
       this.usuarioData = JSON.parse(storedData);
@@ -146,25 +146,26 @@ eliminarUsuario(usuario: any) {
 
     this.apiEmpleado.getEmpleados(this.usuarioData.guidCentro).subscribe(Respuesta => {
       if (Respuesta.exito != 0) {
+
         this.usuarios = Respuesta.datos.$values;
         this.totalPaginas = Math.ceil(this.usuarios.length / this.usuariosPorPagina); // Calcula el total de páginas
         this.actualizarPaginacion();
       }
     });
-  }
+}
 
-  actualizarPaginacion(): void {
-    const inicio = (this.paginaActual - 1) * this.usuariosPorPagina;
-    const fin = inicio + this.usuariosPorPagina;
-    this.usuariosPaginados = this.usuarios.slice(inicio, fin);
-  }
+actualizarPaginacion(): void {
+  const inicio = (this.paginaActual - 1) * this.usuariosPorPagina;
+  const fin = inicio + this.usuariosPorPagina;
+  this.usuariosPaginados = this.usuarios.slice(inicio, fin);
+}
 
-  paginacionAnterior(): void {
-    if (this.paginaActual > 1) {
-      this.paginaActual--;
-      this.actualizarPaginacion();
-    }
+paginacionAnterior(): void {
+  if (this.paginaActual > 1) {
+    this.paginaActual--;
+    this.actualizarPaginacion();
   }
+}
 
   paginacionSiguiente(): void {
     if (this.paginaActual < this.totalPaginas) {
@@ -173,17 +174,17 @@ eliminarUsuario(usuario: any) {
     }
   }
     // Función para filtrar los usuarios por apellido
-    filtrarUsuarios(): void {
-      if (this.apellidoFiltro) {
-        // Filtra usuarios que contengan el apellido en el nombre (puedes ajustarlo según cómo quieras que funcione el filtro)
-        this.usuarios = this.usuarios.filter(usuario => 
-          usuario.nombre.toLowerCase().includes(this.apellidoFiltro.toLowerCase())
-        );
-      } else {
-        // Si no hay filtro, obtenemos todos los usuarios nuevamente
-        this.obtenerUsuarios();
-      }
-      this.totalPaginas = Math.ceil(this.usuarios.length / this.usuariosPorPagina);
-      this.actualizarPaginacion();
+  filtrarUsuarios(): void {
+    if (this.apellidoFiltro) {
+      // Filtra usuarios que contengan el apellido en el nombre (puedes ajustarlo según cómo quieras que funcione el filtro)
+      this.usuarios = this.usuarios.filter(usuario => 
+        usuario.nombre.toLowerCase().includes(this.apellidoFiltro.toLowerCase())
+      );
+    } else {
+      // Si no hay filtro, obtenemos todos los usuarios nuevamente
+      this.obtenerUsuarios();
     }
+    this.totalPaginas = Math.ceil(this.usuarios.length / this.usuariosPorPagina);
+    this.actualizarPaginacion();
+  }
 }

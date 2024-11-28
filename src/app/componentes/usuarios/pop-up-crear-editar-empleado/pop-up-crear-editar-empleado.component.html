@@ -2,7 +2,7 @@
   <h5 class="modal-title" id="exampleModalLabel">
     {{ modo === 'editar' ? 'Editar Usuario' : 'Agregar Usuario' }}
   </h5>
-  <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+
 </div>
 <div class="modal-body">
   <form [formGroup]="empleadoForm">
@@ -116,6 +116,7 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar</button>
+    <button type="button" class="btn btn-primary bt-acciones" (click)="guardarCambios()">Guardar</button>
+    <button type="button" class="btn btn-primary bt-acciones" (click)="cerrarModal()"> Cerrar</button>
   </form>
 </div>

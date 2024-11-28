@@ -3,24 +3,23 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-12">
-      <button class="btn btn-primary mb-3" (click)="agregarUsuario()">Agregar Usuario</button>
-      
+      <div class="acciones">
+        <button class="btn btn-primary mb-3 bt-acciones" (click)="agregarUsuario()">Agregar Usuario</button>
         <!-- Campo de búsqueda por apellido -->
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Buscar por apellido" [(ngModel)]="apellidoFiltro" (input)="filtrarUsuarios()">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              <i class="fas fa-search"></i> <!-- Ícono de lupa -->
-            </span>
-          </div>
+          <input type="text" class="input-busqueda" placeholder="Buscar por apellido" [(ngModel)]="apellidoFiltro" (input)="filtrarUsuarios()">
         </div>
-
+      </div>
+    
       <!-- Grid de usuarios -->
       <table class="table table-striped">
         <thead>
           <tr>
             <th>#</th>
             <th>Nombre</th>
+            <th>Apellido </th>
+            <th>Tipo Docuemento </th>
+            <th>Docuemento </th>
             <th>Email</th>
             <th>Acciones</th>
           </tr>
@@ -29,9 +28,13 @@
           <tr *ngFor="let usuario of usuariosPaginados; let i = index">
             <td>{{ (paginaActual - 1) * usuariosPorPagina + i + 1 }}</td>
             <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.apellido }}</td>
+            <td>{{ usuario.tipoDocumento }}</td>
+            <td>{{ usuario.numeroDocumento }}</td>
             <td>{{ usuario.email }}</td>
             <td>
-              <button class="btn btn-warning btn-sm" (click)="editarUsuario(usuario)">Editar</button> |
+              
+              <button class="btn btn-warning btn-sm" (click)="editarUsuario(usuario)"><i class="bi bi-trash3"></i>Editar</button> |
               <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario)">Eliminar</button>
             </td>
           </tr>

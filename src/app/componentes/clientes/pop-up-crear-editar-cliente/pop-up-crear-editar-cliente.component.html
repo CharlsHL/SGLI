@@ -1,1 +1,122 @@
-<p>pop-up-crear-editar-cliente works!</p>
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+      {{ modo === 'editar' ? 'Editar Usuario' : 'Agregar Usuario' }}
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="clienteForm">
+      <div class="row">
+        <!-- Nombre -->
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre del empleado" />
+          <div *ngIf="clienteForm.get('nombre')?.touched && clienteForm.get('nombre')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('nombre')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Apellido -->
+        <div class="col-md-6 mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="apellido" formControlName="apellido" placeholder="Apellido del empleado" />
+          <div *ngIf="clienteForm.get('apellido')?.touched && clienteForm.get('apellido')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('apellido')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Tipo de Documento -->
+        <div class="col-md-6 mb-3">
+          <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+          <select class="form-control" id="tipoDocumento" formControlName="tipoDocumento">
+            <option value="" disabled>Seleccione un tipo</option>
+            <option value="DNI">DNI</option>
+            <option value="NIF">NIF</option>
+            <option value="CUIL">CUIL</option>
+          </select>
+          <div *ngIf="clienteForm.get('tipoDocumento')?.touched && clienteForm.get('tipoDocumento')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('tipoDocumento')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Número de Documento -->
+        <div class="col-md-6 mb-3">
+          <label for="numeroDocumento" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numeroDocumento" formControlName="numeroDocumento" placeholder="Número de Documento" />
+          <div *ngIf="clienteForm.get('numeroDocumento')?.touched && clienteForm.get('numeroDocumento')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('numeroDocumento')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Teléfono -->
+        <div class="col-md-6 mb-3">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="number" class="form-control" id="telefono" formControlName="telefono" placeholder="Teléfono del empleado" />
+          <div *ngIf="clienteForm.get('telefono')?.touched && clienteForm.get('telefono')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('telefono')?.hasError('required')">Este campo es obligatorio</div>
+            <div *ngIf="clienteForm.get('telefono')?.hasError('pattern')">El teléfono solo puede contener números</div>
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Correo Electrónico" />
+          <div *ngIf="clienteForm.get('email')?.touched && clienteForm.get('email')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('email')?.hasError('required')">Este campo es obligatorio</div>
+            <div *ngIf="clienteForm.get('email')?.hasError('email')">El formato del email es incorrecto</div>
+          </div>
+        </div>
+  
+        <!-- Dirección -->
+        <div class="col-md-6 mb-3">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Dirección" />
+          <div *ngIf="clienteForm.get('direccion')?.touched && clienteForm.get('direccion')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('direccion')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Estado -->
+        <div class="col-md-6 mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Estado" />
+          <div *ngIf="clienteForm.get('estado')?.touched && clienteForm.get('estado')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('estado')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <div class="col-md-6 mb-3">
+          <label for="guidRol" class="form-label">Rol</label>
+          <select class="form-control" id="guidRol" formControlName="guidRol">
+            <option *ngFor="let rol of list" [value]="rol.guid">{{ rol.nombre }}</option>
+          </select>
+          <div *ngIf="clienteForm.get('guidRol')?.touched && clienteForm.get('guidRol')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('guidRol')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Usuario -->
+        <div class="col-md-6 mb-3">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="Nombre de Usuario" />
+          <div *ngIf="clienteForm.get('usuario')?.touched && clienteForm.get('usuario')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('usuario')?.hasError('required')">Este campo es obligatorio</div>
+          </div>
+        </div>
+  
+        <!-- Contraseña -->
+        <div class="col-md-6 mb-3">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena" formControlName="contrasena" placeholder="Contraseña" />
+          <div *ngIf="clienteForm.get('contrasena')?.touched && clienteForm.get('contrasena')?.invalid" class="text-danger">
+            <div *ngIf="clienteForm.get('contrasena')?.hasError('required')">Este campo es obligatorio</div>
+            <div *ngIf="clienteForm.get('contrasena')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres</div>
+          </div>
+        </div>
+      </div>
+  
+      <button type="button" class="btn btn-primary" (click)="guardarCambios()">Guardar</button>
+    </form>
+  </div>
+  

@@ -1,0 +1,9 @@
+/* Revisa que no haya reglas que deshabiliten el fondo */
+.modal-backdrop {
+    pointer-events: auto;  /* Esto debería permitir las interacciones en el fondo */
+  }
+  
+  /* Asegúrate de que no haya una capa oculta que bloquee el fondo */
+  body.modal-open {
+    overflow: hidden;  /* Evita que se desactive el fondo */
+  }
